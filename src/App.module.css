@@ -29,7 +29,7 @@
     width: 20rem;
     border-radius: 1rem;
     font-size: 3rem;
-    font-weight: 200;
+    font-family: monospace;
     color: var(--colorWhite);
     border: 2px solid var(--colorMain);
     background: var(--colorMainDark);
@@ -47,7 +47,9 @@
     margin: 0px;
     height: 3rem;
     font-size: 1.5rem;
-    font-weight: 300;
+    font-weight: 500;
+    font-family: sans-serif;
+    letter-spacing: 0.25ch;
     width: 10rem;
     border-radius: 1rem;
     background: var(--colorMain);
@@ -82,6 +84,7 @@
 .app .result h1 {
     max-width: 95%;
     font-size: 4rem;
+    font-family: monospace;
     text-align: center;
     animation: jiggle 0.25s ease-in-out;
 }
