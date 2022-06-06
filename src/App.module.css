@@ -90,8 +90,8 @@
 }
 
 .app .curtain .settings {
-    width: min(100%, 40rem);
-    height: min(100%, 60rem);
+    width: min(80%, 40rem);
+    height: min(80%, 60rem);
     background-color: var(--colorBG);
     border-radius: 1rem;
     margin: 0px;
@@ -273,6 +273,8 @@
 @media screen and (max-width: 40rem) {
     .settings {
         border-radius: 0px !important;
+        width: 100% !important;
+        height: 100% !important;
     }
 
     .settings .header {
