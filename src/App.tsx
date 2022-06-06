@@ -56,6 +56,7 @@ const TextInput: Component<{
             <button
                 onClick={() => {
                     props.onSubmit(word())
+                    setWord('')
                 }}
             >
                 Probeer
