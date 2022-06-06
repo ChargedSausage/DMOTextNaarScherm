@@ -27,10 +27,11 @@
     margin-bottom: 1rem;
     height: 5rem;
     width: 20rem;
-    border-radius: 5px;
+    border-radius: 1rem;
     font-size: 3rem;
+    font-weight: 200;
     color: var(--colorWhite);
-    border: 4px solid var(--colorMain);
+    border: 2px solid var(--colorMain);
     background: var(--colorMainDark);
     position: relative;
     text-align: center;
@@ -46,10 +47,11 @@
     margin: 0px;
     height: 3rem;
     font-size: 1.5rem;
+    font-weight: 300;
     width: 10rem;
-    border-radius: 5px;
+    border-radius: 1rem;
     background: var(--colorMain);
-    color: var(--colorMainDark);
+    color: var(--colorWhite);
     border: none;
     user-select: none;
     transition: color 0.125s ease-out;
@@ -69,6 +71,8 @@
     left: 0;
     right: 0;
     bottom: 0;
+    max-width: 100vw;
+    max-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -76,9 +80,32 @@
 }
 
 .app .result h1 {
-    max-width: 100%;
-    font-size: 5rem;
+    max-width: 95%;
+    font-size: 4rem;
     text-align: center;
+    animation: jiggle 0.25s ease-in-out;
+}
+
+@keyframes jiggle {
+    from {
+        transform: rotate(0deg);
+    }
+
+    25% {
+        transform: rotate(1deg);
+    }
+
+    50% {
+        transform: rotate(-1deg);
+    }
+
+    75% {
+        transform: rotate(1deg);
+    }
+
+    to {
+        transform: rotate(0deg);
+    }
 }
 
 .app .curtain {
@@ -128,6 +155,9 @@
     margin: 0px;
     font-size: 2rem;
     text-align: center;
+    white-space: nowrap;
+    overflow: none;
+    text-overflow: ellipsis;
 }
 
 .settings .header button {
@@ -189,16 +219,28 @@
     text-transform: capitalize;
 }
 
+.wordHeader .buttons {
+    display: flex;
+}
+
 .wordHeader button {
     height: calc(100% - 1rem);
     width: 2rem;
     border: 0px;
-    margin: 0.5rem;
-    background-color: var(--colorDanger);
+    margin: 0.5rem 0.5rem 0.5rem 0;
     border-radius: 5px;
 }
 
-.wordHeader button svg {
+.wordHeader button.cap {
+    background-color: var(--colorBG);
+    fill: var(--colorWhite);
+}
+
+.wordHeader button.delete {
+    background-color: var(--colorDanger);
+}
+
+.wordHeader button.delete svg {
     width: 100%;
     height: 100%;
 }

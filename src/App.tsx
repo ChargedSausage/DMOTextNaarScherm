@@ -35,12 +35,7 @@ type WordToScreenData = {
 const TextInput: Component<{
     value: string
     onSubmit: (value: string) => void
-    onInputChange: (
-        event: InputEvent & {
-            currentTarget: HTMLInputElement
-            target: Element
-        }
-    ) => void
+    onInputChange: (event: InputEvent) => void
 }> = (props) => {
     const [word, setWord] = createSignal(props.value)
 
@@ -111,9 +106,26 @@ const WordEditor: Component<{
 
                 <div class={styles.buttons}>
                     {props.deletable ? (
-                        <button onClick={props.onDelete}>
-                            <Trash></Trash>
-                        </button>
+                        <>
+                            <button
+                                class={styles.cap}
+                                onClick={() => {
+                                    props.onChange({
+                                        word: props.word,
+                                        caseSensitive: !props.caseSensitive,
+                                        hex: props.hex,
+                                        displayText: props.displayText,
+                                    })
+                                }}
+                            >
+                                <CaseSensitive
+                                    color={props.caseSensitive ? 'var(--colorDanger)' : 'var(--colorSecondary)'}
+                                />
+                            </button>
+                            <button class={styles.delete} onClick={props.onDelete}>
+                                <Trash></Trash>
+                            </button>
+                        </>
                     ) : (
                         <></>
                     )}
@@ -133,22 +145,6 @@ const WordEditor: Component<{
                         })
                     }}
                 ></input>
-                {props.deletable ? (
-                    <button
-                        onClick={() => {
-                            props.onChange({
-                                word: props.word,
-                                caseSensitive: !props.caseSensitive,
-                                hex: props.hex,
-                                displayText: props.displayText,
-                            })
-                        }}
-                    >
-                        <CaseSensitive color={props.caseSensitive ? 'var(--colorDanger)' : 'var(--colorSecondary)'} />
-                    </button>
-                ) : (
-                    <></>
-                )}
 
                 <input
                     type='text'
