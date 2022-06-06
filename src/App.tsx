@@ -241,7 +241,7 @@ const Settings: Component<{
 
 const App: Component = () => {
     const [value, setValue] = createSignal('')
-    const settings: WordToScreenData = JSON.parse(localStorage.getItem('words') || '{"words":[]}')
+    const settings: WordToScreenData = JSON.parse(localStorage.getItem('words') || '{"words":[], falseHex: "#ff0000", falseText: "Fout"}')
     const [words, setWords] = createSignal<WordToScreenData>(settings)
     const [screens, setScreens] = createSignal<ResultScreenData[]>()
     const [showSettings, setShowSettings] = createSignal(false)
