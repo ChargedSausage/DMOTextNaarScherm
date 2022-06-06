@@ -1,6 +1,7 @@
 :root {
     --dropShadowUnit: 0.2rem;
     --dropShadow: 0px 0px var(--dropShadowUnit) rgb(5, 5, 5);
+    --dropShadowBig: 0px 0px calc(var(--dropShadowUnit) * 2) rgb(5, 5, 5);
     --dropShadowLight: 0px 0px var(--dropShadowUnit) rgba(255, 255, 255, 0.501);
 
     --dropShadowText: 0px 0px calc(var(--dropShadowUnit) / 2) rgb(5, 5, 5);
@@ -135,12 +136,14 @@
 
 .settings .header {
     width: 100%;
+    padding-top: 2rem;
     height: 5rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: var(--colorMain);
     border-radius: 1rem 1rem 0 0;
+    box-shadow: var(--dropShadowBig);
 }
 
 .settings {
@@ -173,6 +176,7 @@
     justify-content: center;
     align-items: center;
     padding: 0px;
+    box-shadow: var(--dropShadow);
 }
 
 .settings .header button svg {
@@ -183,7 +187,7 @@
 }
 
 .settings .settingsContainer {
-    height: calc(100% - 11rem);
+    height: calc(100% - 13rem);
     overflow-y: scroll;
     padding: 1rem 1rem 5rem 1rem;
 }
@@ -191,6 +195,7 @@
 .settingsContainer .wordEditor {
     width: 100%;
     margin-bottom: 1rem;
+    box-shadow: var(--dropShadow);
 }
 
 .settingsContainer .wordEditor .wordHeader {
@@ -241,6 +246,7 @@
 
 .wordHeader button.delete {
     background-color: var(--colorDanger);
+    box-shadow: var(--dropShadow);
 }
 
 .wordHeader button.delete svg {
@@ -315,6 +321,7 @@
     background-color: var(--colorMain);
     border: 0px;
     border-radius: 100%;
+    box-shadow: var(--dropShadow);
 }
 
 .settingsContainer > button svg {

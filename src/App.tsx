@@ -306,15 +306,14 @@ const App: Component = () => {
                     />
                 )}
             </For>
-            <Show when={showSettings()}>
-                <Settings
-                    data={words()}
-                    onChange={(words) => {
-                        setWords(words)
-                    }}
-                    onClose={() => setShowSettings(false)}
-                ></Settings>
-            </Show>
+            <Show when={showSettings()}></Show>
+            <Settings
+                data={words()}
+                onChange={(words) => {
+                    setWords(words)
+                }}
+                onClose={() => setShowSettings(false)}
+            ></Settings>
         </div>
     )
 }
