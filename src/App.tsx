@@ -2,6 +2,7 @@ import { Component, createEffect, createMemo, createSignal, For, Show } from 'so
 import { Cog } from './icons/Cog'
 import { Cross } from './icons/Cross'
 import { Plus } from './icons/Plus'
+import { Clock } from './icons/Clock'
 import { CaseSensitive } from './icons/CaseSensitive'
 
 import styles from './App.module.css'
@@ -30,6 +31,7 @@ type WordToScreenData = {
     words: Word[]
     foutHex?: string
     foutText?: string
+    screenTime?: number
 }
 
 const TextInput: Component<{
@@ -163,6 +165,28 @@ const WordEditor: Component<{
     )
 }
 
+const ScreenTimeInput: Component<{
+    value?: number
+    onChange?: (
+        e: Event & {
+            currentTarget: HTMLInputElement
+            target: Element
+        }
+    ) => void
+}> = (props) => {
+    return (
+        <div class={styles.screenTimeInput}>
+            <input
+                type='number'
+                value={props.value}
+                onChange={(e) => (props.onChange ? props.onChange(e) : '')}
+            ></input>
+            <span>ms</span>
+            <Clock />
+        </div>
+    )
+}
+
 const Settings: Component<{
     data: WordToScreenData
     onChange: (data: WordToScreenData) => void
@@ -179,6 +203,17 @@ const Settings: Component<{
                     </button>
                 </div>
                 <div class={styles.settingsContainer}>
+                    <ScreenTimeInput
+                        value={props.data.screenTime}
+                        onChange={(e) => {
+                            props.onChange({
+                                words: props.data.words,
+                                foutHex: props.data.foutHex,
+                                foutText: props.data.foutText,
+                                screenTime: Number(e.currentTarget.value),
+                            })
+                        }}
+                    ></ScreenTimeInput>
                     <WordEditor
                         word={'default'}
                         caseSensitive={false}
@@ -190,6 +225,7 @@ const Settings: Component<{
                                 words: props.data.words,
                                 foutHex: word.hex,
                                 foutText: word.displayText,
+                                screenTime: props.data.screenTime,
                             })
                         }}
                     ></WordEditor>
@@ -213,6 +249,7 @@ const Settings: Component<{
                                         words: wordArray,
                                         foutText: props.data.foutText,
                                         foutHex: props.data.foutHex,
+                                        screenTime: props.data.screenTime,
                                     }
                                     props.onChange(data)
                                 }}
@@ -241,7 +278,9 @@ const Settings: Component<{
 
 const App: Component = () => {
     const [value, setValue] = createSignal('')
-    const settings: WordToScreenData = JSON.parse(localStorage.getItem('words') || '{"words":[], falseHex: "#ff0000", falseText: "Fout"}')
+    const settings: WordToScreenData = JSON.parse(
+        localStorage.getItem('words') || '{"words":[], falseHex: "#ff0000", falseText: "Fout"}'
+    )
     const [words, setWords] = createSignal<WordToScreenData>(settings)
     const [screens, setScreens] = createSignal<ResultScreenData[]>()
     const [showSettings, setShowSettings] = createSignal(false)
@@ -254,7 +293,6 @@ const App: Component = () => {
 
     return (
         <div class={styles.app}>
-            <div>{}</div>
             <TextInput
                 value={valueRef()}
                 onInputChange={(e) => {
@@ -299,22 +337,21 @@ const App: Component = () => {
                 {(screen) => (
                     <ResultScreen
                         data={screen}
-                        customDelay={3000}
+                        customDelay={words().screenTime || 3000}
                         onTimerDone={() => {
                             setScreens([])
                         }}
                     />
                 )}
             </For>
-            <Show when={showSettings()}>
-                <Settings
-                    data={words()}
-                    onChange={(words) => {
-                        setWords(words)
-                    }}
-                    onClose={() => setShowSettings(false)}
-                ></Settings>
-            </Show>
+            <Show when={showSettings()}></Show>
+            <Settings
+                data={words()}
+                onChange={(words) => {
+                    setWords(words)
+                }}
+                onClose={() => setShowSettings(false)}
+            ></Settings>
         </div>
     )
 }

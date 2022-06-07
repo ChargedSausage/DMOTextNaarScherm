@@ -25,6 +25,7 @@ code {
     --colorBG: #0a0a0a;
     --colorBGLight: #161616;
     --colorBlack: #000000;
-    --colorWhite: hsl(149, 64%, 88%);
+    --colorGray: hsl(149, 30%, 70%);
+    --colorWhite: #cdf4e0;
     --colorDanger: #792525;
 }
