@@ -7,6 +7,7 @@ import { CaseSensitive } from './icons/CaseSensitive'
 
 import styles from './App.module.css'
 import { Trash } from './icons/Trash'
+import { style } from 'solid-js/web'
 
 const contrastColor = (bgColor: string) => {
     if (!bgColor) {
@@ -176,13 +177,13 @@ const ScreenTimeInput: Component<{
 }> = (props) => {
     return (
         <div class={styles.screenTimeInput}>
+            <Clock />
             <input
                 type='number'
                 value={props.value}
                 onChange={(e) => (props.onChange ? props.onChange(e) : '')}
             ></input>
             <span>ms</span>
-            <Clock />
         </div>
     )
 }
@@ -214,62 +215,64 @@ const Settings: Component<{
                             })
                         }}
                     ></ScreenTimeInput>
-                    <WordEditor
-                        word={'default'}
-                        caseSensitive={false}
-                        hex={props.data.foutHex || '#000000'}
-                        displayText={props.data.foutText || ''}
-                        deletable={false}
-                        onChange={(word) => {
-                            props.onChange({
-                                words: props.data.words,
-                                foutHex: word.hex,
-                                foutText: word.displayText,
-                                screenTime: props.data.screenTime,
-                            })
-                        }}
-                    ></WordEditor>
-                    <For each={props.data.words}>
-                        {(word, wordIndex) => (
-                            <WordEditor
-                                word={word.word}
-                                caseSensitive={word.caseSensitive || false}
-                                hex={word.hex}
-                                displayText={word.displayText || ''}
-                                deletable={true}
-                                onChange={(word) => {
-                                    const data = { ...props.data }
-                                    data.words[wordIndex()] = word
-                                    props.onChange(data)
-                                }}
-                                onDelete={() => {
-                                    const wordArray = props.data.words
-                                    wordArray.splice(wordIndex(), 1)
-                                    const data = {
-                                        words: wordArray,
-                                        foutText: props.data.foutText,
-                                        foutHex: props.data.foutHex,
-                                        screenTime: props.data.screenTime,
-                                    }
-                                    props.onChange(data)
-                                }}
-                            ></WordEditor>
-                        )}
-                    </For>
-                    <button
-                        class={styles.addButton}
-                        onClick={() => {
-                            const data = { ...props.data }
-                            data.words.push({
-                                word: '',
-                                displayText: '',
-                                hex: '#ffffff',
-                            })
-                            props.onChange(data)
-                        }}
-                    >
-                        <Plus></Plus>
-                    </button>
+                    <div class={styles.words}>
+                        <WordEditor
+                            word={'default'}
+                            caseSensitive={false}
+                            hex={props.data.foutHex || '#000000'}
+                            displayText={props.data.foutText || ''}
+                            deletable={false}
+                            onChange={(word) => {
+                                props.onChange({
+                                    words: props.data.words,
+                                    foutHex: word.hex,
+                                    foutText: word.displayText,
+                                    screenTime: props.data.screenTime,
+                                })
+                            }}
+                        ></WordEditor>
+                        <For each={props.data.words}>
+                            {(word, wordIndex) => (
+                                <WordEditor
+                                    word={word.word}
+                                    caseSensitive={word.caseSensitive || false}
+                                    hex={word.hex}
+                                    displayText={word.displayText || ''}
+                                    deletable={true}
+                                    onChange={(word) => {
+                                        const data = { ...props.data }
+                                        data.words[wordIndex()] = word
+                                        props.onChange(data)
+                                    }}
+                                    onDelete={() => {
+                                        const wordArray = props.data.words
+                                        wordArray.splice(wordIndex(), 1)
+                                        const data = {
+                                            words: wordArray,
+                                            foutText: props.data.foutText,
+                                            foutHex: props.data.foutHex,
+                                            screenTime: props.data.screenTime,
+                                        }
+                                        props.onChange(data)
+                                    }}
+                                ></WordEditor>
+                            )}
+                        </For>
+                        <button
+                            class={styles.addButton}
+                            onClick={() => {
+                                const data = { ...props.data }
+                                data.words.push({
+                                    word: '',
+                                    displayText: '',
+                                    hex: '#ffffff',
+                                })
+                                props.onChange(data)
+                            }}
+                        >
+                            <Plus></Plus>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -279,7 +282,7 @@ const Settings: Component<{
 const App: Component = () => {
     const [value, setValue] = createSignal('')
     const settings: WordToScreenData = JSON.parse(
-        localStorage.getItem('words') || '{"words":[], falseHex: "#ff0000", falseText: "Fout"}'
+        localStorage.getItem('words') || '{"words":[], falseHex: "#ff0000", falseText: "Fout", screenTime: 3000}'
     )
     const [words, setWords] = createSignal<WordToScreenData>(settings)
     const [screens, setScreens] = createSignal<ResultScreenData[]>()
@@ -344,14 +347,15 @@ const App: Component = () => {
                     />
                 )}
             </For>
-            <Show when={showSettings()}></Show>
-            <Settings
-                data={words()}
-                onChange={(words) => {
-                    setWords(words)
-                }}
-                onClose={() => setShowSettings(false)}
-            ></Settings>
+            <Show when={showSettings()}>
+                <Settings
+                    data={words()}
+                    onChange={(words) => {
+                        setWords(words)
+                    }}
+                    onClose={() => setShowSettings(false)}
+                ></Settings>
+            </Show>
         </div>
     )
 }
