@@ -84,11 +84,13 @@ const WordEditor: Component<{
     hex: string
     displayText: string
     deletable: boolean
+    index: number
+    animated: boolean
     onChange: (data: { word: string; caseSensitive: boolean; hex: string; displayText: string }) => void
     onDelete?: () => void
 }> = (props) => {
     return (
-        <div class={styles.wordEditor}>
+        <div class={`${styles.wordEditor} ${props.animated ? styles.animated : ''}`} style={`--data-delay-multiply: ${props.index}`}>
             <div class={styles.wordHeader}>
                 {props.deletable ? (
                     <input
@@ -168,6 +170,7 @@ const WordEditor: Component<{
 
 const ScreenTimeInput: Component<{
     value?: number
+    animated: boolean
     onChange?: (
         e: Event & {
             currentTarget: HTMLInputElement
@@ -176,7 +179,7 @@ const ScreenTimeInput: Component<{
     ) => void
 }> = (props) => {
     return (
-        <div class={styles.screenTimeInput}>
+        <div class={`${styles.screenTimeInput} ${props.animated ? styles.animated : ''}`}>
             <Clock />
             <input
                 type='number'
@@ -193,10 +196,15 @@ const Settings: Component<{
     onChange: (data: WordToScreenData) => void
     onClose: () => void
 }> = (props) => {
+    const [animated, setAnimated] = createSignal(true);
+
+    setTimeout(() => {
+        setAnimated(false);
+    }, 1000);
     return (
         <div class={styles.curtain}>
             <div class={styles.settings}>
-                <div class={styles.header}>
+                <div class={`${styles.header} ${styles.animated}`}>
                     <Cog></Cog>
                     <h1>Settings</h1>
                     <button onClick={props.onClose}>
@@ -206,6 +214,7 @@ const Settings: Component<{
                 <div class={styles.settingsContainer}>
                     <ScreenTimeInput
                         value={props.data.screenTime}
+                        animated={animated()}
                         onChange={(e) => {
                             props.onChange({
                                 words: props.data.words,
@@ -218,10 +227,12 @@ const Settings: Component<{
                     <div class={styles.words}>
                         <WordEditor
                             word={'default'}
+                            animated={animated()}
                             caseSensitive={false}
                             hex={props.data.foutHex || '#000000'}
                             displayText={props.data.foutText || ''}
                             deletable={false}
+                            index={0}
                             onChange={(word) => {
                                 props.onChange({
                                     words: props.data.words,
@@ -235,6 +246,8 @@ const Settings: Component<{
                             {(word, wordIndex) => (
                                 <WordEditor
                                     word={word.word}
+                                    animated={animated()}
+                                    index={wordIndex() + 1}
                                     caseSensitive={word.caseSensitive || false}
                                     hex={word.hex}
                                     displayText={word.displayText || ''}
@@ -259,7 +272,7 @@ const Settings: Component<{
                             )}
                         </For>
                         <button
-                            class={styles.addButton}
+                            class={`${styles.addButton} ${animated() ? styles.animated : ''}`}
                             onClick={() => {
                                 const data = { ...props.data }
                                 data.words.push({
