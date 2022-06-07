@@ -20,7 +20,8 @@ code {
     --colorSecondary: #27965b;
 
     --gradientMainSecondary: linear-gradient(180deg, var(--colorMain) 0%, var(--colorSecondary) 100%);
-    --gradientBG: linear-gradient(180deg, var(--colorBlack) 0%, var(--colorMainDark) 100%);
+    /* --gradientBG: linear-gradient(180deg, var(--colorBlack) 0%, var(--colorMainDark) 100%); */
+    --gradientBG: radial-gradient(circle at bottom, var(--colorMainDark) 0%, var(--colorBG) 65%, var(--colorBlack) 100%);
 
     --colorBG: #0a0a0a;
     --colorBGLight: #161616;
@@ -28,4 +29,5 @@ code {
     --colorGray: hsl(149, 30%, 70%);
     --colorWhite: #cdf4e0;
     --colorDanger: #792525;
+    --colorDangerLight: hsl(0, 53%, 45%);
 }

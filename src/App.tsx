@@ -121,7 +121,7 @@ const WordEditor: Component<{
                                 }}
                             >
                                 <CaseSensitive
-                                    color={props.caseSensitive ? 'var(--colorDanger)' : 'var(--colorSecondary)'}
+                                    color={props.caseSensitive ? 'var(--colorDangerLight)' : 'var(--colorSecondary)'}
                                 />
                             </button>
                             <button class={styles.delete} onClick={props.onDelete}>
