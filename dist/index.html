@@ -6,14 +6,30 @@
             name="viewport"
             content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
         />
+
         <meta name="author" content="Thomas Gerrits" />
-        <meta name="keywords" content="Escape room, Online tool, City escape">
-        <meta name="description" content="A simple tool. Input a text, then try your luck at a screen. Edit the word/screen combinations with the !SETTINGS! command.">
-        <link rel="shortcut icon" type="image/ico" href="/favicon.ico" />
-        <link rel="icon" type="image/ico" href="/favicon.ico" />
+        <meta name="keywords" content="Escape room, Online tool, City escape" />
+        <meta
+            name="description"
+            content="A simple tool. Input a text, then try your luck at a screen. Edit the word/screen combinations with the !SETTINGS! command."
+        />
+
+        <meta property="og:title" content="Guess the Codeword" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://www.guess-codeword.com/" />
+        <!-- <meta name="twitter:card" content="summary_large_image" /> -->
+        <meta
+            property="og:description"
+            content="A simple tool. Input a text, then try your luck at a screen. Edit the word/screen combinations with the !SETTINGS! command."
+        />
+        <meta property="og:site_name" content="Guess the Codeword" />
+        <meta property="fb:app_id" content="eba41c6a-cec5-4522-b9e5-e1cf128fea46" />
+
+        <link rel="shortcut icon" type="image/ico" href="data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAABMLAAATCwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAASh0IAC8TBQU/GQYNJg8EAy0SBQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA1FQUAAAAAAHMuDDuINg6kjjgOw4Y1DpZtKwsswU0UACANAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgDAJAG4oBzaPNgvenD0P/50+EP+aOw3/jTgOzGcpCyFvLAsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMxwQAAAAAAGTTi2avYFj/9Ksmf/WtKL/wIVo/51EGP9+MQtup0IQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGdhXgBhV1EM2c7Ix+jn5d3R1tZ52Nzdj+3s6ujLnYX/hjkThuBpLgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABiY2MAVldXCNvc3LfLzcxp////AP///wDQ0tJ57Obi/6SBcGHTs6IAAAAAAAAAAAAAAAAAAAABAD09/wAUFGYIGhqDEgAAFQS1trNlpqemOa+wrwD3+PcAysvKaeDh4M6kp6cera+wAAAAAAAAAAAAERFyAAEBMgMlJb9MLCzesy4u59EsLN2rLi6oS1NTRw1NTVMAAAAAA6akp2Wpqqk/AAAAAB0gGwAAAAAAAAAAADY2/wBBQcFRODjt7DIy+v8vL/v/MDD6/y4u6t8kJLc4MEecADFsFB89iRiHQZgWs0GUF504fxRCDR8FAiFLDACNjYMSy8zjwsnK+v+srfj/goL6/0tM+v8xMfn/KyralyJhABpBlxa5Sqka/0qrGf9IqRj/RqEY6jqEFVBVwh4AsLGxNe7v7erm5+K+1tfPed7f3rPW1/X5e3v7/y0s4bSTroh7rNaY/7bco/+t2Jj/jclu/1yzMP9CmRa9I08NDre4tzjc3dzLra2tKbO0swBtbWsN4OHcqujp+f9zdNGb3N3ds/f29/nk4uW25OPltvDx8O/S6cf/arFH3SNmASGfn58brq+udXR1dAZLS0sA////ANbW1ofu7+7yra6vSd/g37XZ2dmdODg4CB4eHgXFxsVj9fb2+sbZvc0qXRAVWVlZAllZWRNCQkIBhIWEAHx8fBTP0M+wzs/OeAAAAAPExcR/vL28VNXW1QCpqqkAqqqqJurr6ujW19eL////AAAAAAAAAAAAAAAAAHt7ewBra2sbmZmZMXR1dASNjY0AhoeGInx8fCGHh4cA0NDQAK+wr0rS09KvqquqILm6uQAAAAAAAAAAAAAAAAAJCQkABAQEAAUFBQAGBgYAAAAAAAAAAAAAAAAAAgICAP///wB7fHsylJWUG8zNzAALCwsA/x8AAPwPAAD8BwAA+AcAAPgHAAD4xwAA4McAAICHAACAgQAAAAEAAAAAAAAQAAAAGAAAABAxAADxMQAA8zMAAA==" />
+        <link rel="icon" type="image/ico" href="data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAABMLAAATCwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAASh0IAC8TBQU/GQYNJg8EAy0SBQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA1FQUAAAAAAHMuDDuINg6kjjgOw4Y1DpZtKwsswU0UACANAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgDAJAG4oBzaPNgvenD0P/50+EP+aOw3/jTgOzGcpCyFvLAsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMxwQAAAAAAGTTi2avYFj/9Ksmf/WtKL/wIVo/51EGP9+MQtup0IQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGdhXgBhV1EM2c7Ix+jn5d3R1tZ52Nzdj+3s6ujLnYX/hjkThuBpLgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABiY2MAVldXCNvc3LfLzcxp////AP///wDQ0tJ57Obi/6SBcGHTs6IAAAAAAAAAAAAAAAAAAAABAD09/wAUFGYIGhqDEgAAFQS1trNlpqemOa+wrwD3+PcAysvKaeDh4M6kp6cera+wAAAAAAAAAAAAERFyAAEBMgMlJb9MLCzesy4u59EsLN2rLi6oS1NTRw1NTVMAAAAAA6akp2Wpqqk/AAAAAB0gGwAAAAAAAAAAADY2/wBBQcFRODjt7DIy+v8vL/v/MDD6/y4u6t8kJLc4MEecADFsFB89iRiHQZgWs0GUF504fxRCDR8FAiFLDACNjYMSy8zjwsnK+v+srfj/goL6/0tM+v8xMfn/KyralyJhABpBlxa5Sqka/0qrGf9IqRj/RqEY6jqEFVBVwh4AsLGxNe7v7erm5+K+1tfPed7f3rPW1/X5e3v7/y0s4bSTroh7rNaY/7bco/+t2Jj/jclu/1yzMP9CmRa9I08NDre4tzjc3dzLra2tKbO0swBtbWsN4OHcqujp+f9zdNGb3N3ds/f29/nk4uW25OPltvDx8O/S6cf/arFH3SNmASGfn58brq+udXR1dAZLS0sA////ANbW1ofu7+7yra6vSd/g37XZ2dmdODg4CB4eHgXFxsVj9fb2+sbZvc0qXRAVWVlZAllZWRNCQkIBhIWEAHx8fBTP0M+wzs/OeAAAAAPExcR/vL28VNXW1QCpqqkAqqqqJurr6ujW19eL////AAAAAAAAAAAAAAAAAHt7ewBra2sbmZmZMXR1dASNjY0AhoeGInx8fCGHh4cA0NDQAK+wr0rS09KvqquqILm6uQAAAAAAAAAAAAAAAAAJCQkABAQEAAUFBQAGBgYAAAAAAAAAAAAAAAAAAgICAP///wB7fHsylJWUG8zNzAALCwsA/x8AAPwPAAD8BwAA+AcAAPgHAAD4xwAA4McAAICHAACAgQAAAAEAAAAAAAAQAAAAGAAAABAxAADxMQAA8zMAAA==" />
         <title>Guess the Codeword</title>
-      <script type="module" crossorigin src="/assets/index.e7ac2551.js"></script>
-      <link rel="stylesheet" href="/assets/index.a1f89468.css">
+      <script type="module" crossorigin src="/assets/index.bc07baa9.js"></script>
+      <link rel="stylesheet" href="/assets/index.08ac679c.css">
     </head>
     <body>
         <noscript>You need to enable JavaScript to run this app.</noscript>
