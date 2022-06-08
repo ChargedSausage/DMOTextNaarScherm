@@ -38,7 +38,12 @@ type WordToScreenData = {
 const TextInput: Component<{
     value: string
     onSubmit: (value: string) => void
-    onInputChange: (event: InputEvent) => void
+    onInputChange: (
+        event: InputEvent & {
+            currentTarget: HTMLInputElement
+            target: Element
+        }
+    ) => void
 }> = (props) => {
     const [word, setWord] = createSignal(props.value)
 
@@ -322,7 +327,7 @@ const App: Component = () => {
             <TextInput
                 value={valueRef()}
                 onInputChange={(e) => {
-                    setValue(e.target.value || '')
+                    setValue(e.currentTarget.value || '')
                 }}
                 onSubmit={(val) => {
                     let result = false
