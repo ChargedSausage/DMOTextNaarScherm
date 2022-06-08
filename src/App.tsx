@@ -50,7 +50,14 @@ const TextInput: Component<{
                     setWord(e.currentTarget.value)
                     props.onInputChange(e)
                 }}
-                onKeyDown={(e) => alert(e.key)}
+                onKeyDown={(e) => {
+                    console.log(e);
+                    if (e.key == 'Enter') {
+                        props.onSubmit(word())
+                        setWord('')
+                        e.currentTarget.blur()
+                    }
+                }}
             ></input>
             <button
                 onClick={() => {
