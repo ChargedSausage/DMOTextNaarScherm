@@ -8,6 +8,7 @@ body {
         'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    background-color: var(--colorBG);
 }
 
 code {
@@ -21,7 +22,12 @@ code {
 
     --gradientMainSecondary: linear-gradient(180deg, var(--colorMain) 0%, var(--colorSecondary) 100%);
     /* --gradientBG: linear-gradient(180deg, var(--colorBlack) 0%, var(--colorMainDark) 100%); */
-    --gradientBG: radial-gradient(circle at bottom, var(--colorMainDark) 0%, var(--colorBG) 65%, var(--colorBlack) 100%);
+    --gradientBG: radial-gradient(
+        circle at bottom,
+        var(--colorMainDark) 0%,
+        var(--colorBG) 65%,
+        var(--colorBlack) 100%
+    );
 
     --colorBG: #0a0a0a;
     --colorBGLight: #161616;

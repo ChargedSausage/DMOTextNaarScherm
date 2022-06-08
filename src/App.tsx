@@ -50,6 +50,7 @@ const TextInput: Component<{
                     setWord(e.currentTarget.value)
                     props.onInputChange(e)
                 }}
+                onKeyDown={(e) => alert(e.key)}
             ></input>
             <button
                 onClick={() => {
@@ -90,7 +91,10 @@ const WordEditor: Component<{
     onDelete?: () => void
 }> = (props) => {
     return (
-        <div class={`${styles.wordEditor} ${props.animated ? styles.animated : ''}`} style={`--data-delay-multiply: ${props.index}`}>
+        <div
+            class={`${styles.wordEditor} ${props.animated ? styles.animated : ''}`}
+            style={`--data-delay-multiply: ${props.index}`}
+        >
             <div class={styles.wordHeader}>
                 {props.deletable ? (
                     <input
@@ -196,11 +200,11 @@ const Settings: Component<{
     onChange: (data: WordToScreenData) => void
     onClose: () => void
 }> = (props) => {
-    const [animated, setAnimated] = createSignal(true);
+    const [animated, setAnimated] = createSignal(true)
 
     setTimeout(() => {
-        setAnimated(false);
-    }, 1000);
+        setAnimated(false)
+    }, 1000)
     return (
         <div class={styles.curtain}>
             <div class={styles.settings}>
