@@ -51,7 +51,6 @@ const TextInput: Component<{
                     props.onInputChange(e)
                 }}
                 onKeyDown={(e) => {
-                    console.log(e);
                     if (e.key == 'Enter') {
                         props.onSubmit(word())
                         setWord('')
@@ -355,7 +354,6 @@ const App: Component = () => {
                     }
 
                     if (!result) {
-                        console.log(words().foutHex)
                         setScreens([{ text: words().foutText, hex: words().foutHex }])
                     }
                 }}
