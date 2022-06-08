@@ -210,7 +210,7 @@ const Settings: Component<{
 
     setTimeout(() => {
         setAnimated(false)
-    }, 1000)
+    }, 1200)
     return (
         <div class={styles.curtain}>
             <div class={styles.settings}>
@@ -305,7 +305,7 @@ const Settings: Component<{
 const App: Component = () => {
     const [value, setValue] = createSignal('')
     const settings: WordToScreenData = JSON.parse(
-        localStorage.getItem('words') || '{"words":[], "falseHex": "#ff0000", "falseText": "Fout", "screenTime": 3000}'
+        localStorage.getItem('words') || '{"words":[], "foutHex": "#ff0000", "foutText": "Fout", "screenTime": 3000}'
     )
     const [words, setWords] = createSignal<WordToScreenData>(settings)
     const [screens, setScreens] = createSignal<ResultScreenData[]>()
