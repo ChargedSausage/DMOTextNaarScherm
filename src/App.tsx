@@ -8,6 +8,14 @@ import { TextInput } from './components/TextInput'
 import { ResultScreen } from './components/ResultScreen'
 import { Settings } from './components/Settings'
 
+const getWindowDimensions = () => {
+    const { innerWidth: width, innerHeight: height } = window
+    return {
+        width,
+        height,
+    }
+}
+
 const App: Component = () => {
     const [value, setValue] = createSignal('')
     const settings: WordToScreenData = JSON.parse(
@@ -17,6 +25,14 @@ const App: Component = () => {
     const [screens, setScreens] = createSignal<ResultScreenData[]>()
     const [showSettings, setShowSettings] = createSignal(false)
 
+    const [windowDimensions, setWindowDimensions] = createSignal(getWindowDimensions())
+
+    window.addEventListener('resize', () => setWindowDimensions(getWindowDimensions()))
+
+    createEffect(() => {
+        console.log(windowDimensions())
+    })
+
     const valueRef = createMemo(() => value())
 
     createEffect(() => {
@@ -24,7 +40,10 @@ const App: Component = () => {
     })
 
     return (
-        <div class={styles.app}>
+        <div
+            style={`--screen-height: ${windowDimensions().height}; --screen-width: ${windowDimensions().width};`}
+            class={styles.app}
+        >
             <TextInput
                 value={valueRef()}
                 onInputChange={(e) => {
