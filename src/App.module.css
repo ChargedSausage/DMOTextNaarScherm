@@ -88,7 +88,7 @@
     font-family: monospace;
     text-align: center;
     animation: jiggle 0.25s ease-in-out;
-    animation-delay: 0.25s;
+    animation-delay: 0.75s;
 }
 
 @keyframes jiggle {
@@ -101,11 +101,11 @@
     }
 
     50% {
-        transform: rotate(-1deg);
+        transform: rotate(-2deg);
     }
 
     75% {
-        transform: rotate(1deg);
+        transform: rotate(2deg);
     }
 
     to {
