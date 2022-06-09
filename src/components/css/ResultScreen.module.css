@@ -1,0 +1,44 @@
+.result {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    max-width: 100vw;
+    max-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 4rem;
+}
+
+.result h1 {
+    max-width: 95%;
+    font-size: 4rem;
+    font-family: monospace;
+    text-align: center;
+    animation: jiggle 0.25s ease-in-out;
+    animation-delay: 0.5s;
+}
+
+@keyframes jiggle {
+    from {
+        transform: rotate(0deg);
+    }
+
+    25% {
+        transform: rotate(1deg);
+    }
+
+    50% {
+        transform: rotate(-2deg);
+    }
+
+    75% {
+        transform: rotate(2deg);
+    }
+
+    to {
+        transform: rotate(0deg);
+    }
+}

@@ -1,0 +1,50 @@
+.textInput {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.textInput input {
+    margin-bottom: 1rem;
+    height: 5rem;
+    width: 20rem;
+    border-radius: 1rem;
+    font-size: 3rem;
+    font-family: monospace;
+    color: var(--colorWhite);
+    border: 2px solid var(--colorMain);
+    background: var(--colorMainDark);
+    position: relative;
+    text-align: center;
+    box-shadow: var(--dropShadow);
+    position: relative;
+}
+
+.textInput input:focus {
+    outline: none;
+}
+
+.textInput button {
+    margin: 0px;
+    height: 3rem;
+    font-size: 1.5rem;
+    font-weight: 500;
+    font-family: sans-serif;
+    letter-spacing: 0.25ch;
+    width: 10rem;
+    border-radius: 1rem;
+    background: var(--colorMain);
+    color: var(--colorWhite);
+    border: none;
+    user-select: none;
+    transition: color 0.125s ease-out;
+    box-shadow: var(--dropShadow);
+    text-shadow: var(--dropShadowText);
+}
+
+.textInput button:active {
+    color: var(--colorSecondary);
+    box-shadow: var(--dropShadowLight);
+    text-shadow: var(--dropShadowLightText);
+}
