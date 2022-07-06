@@ -7,12 +7,3 @@
     --dropShadowText: 0px 0px calc(var(--dropShadowUnit) / 2) rgb(5, 5, 5);
     --dropShadowLightText: 0px 0px calc(var(--dropShadowUnit) / 2) rgba(255, 255, 255, 0.501);
 }
-
-.app {
-    height: calc((var(--screen-height) * 1px) - 1px);
-    width: calc((var(--screen-width) * 1px) - 1px);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: var(--gradientBG);
-}

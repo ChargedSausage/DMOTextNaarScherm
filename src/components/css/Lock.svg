@@ -1,0 +1,21 @@
+<svg
+    width='100%'
+    height='100%'
+    viewBox='0 0 500 500'
+    style='fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;'
+>
+    <g class={styles.lock} id='lock'>
+        <g transform='matrix(1.21107,0,0,1,-53.2932,26.1939)'>
+            <path
+                d='M165,422C165,422 165.011,109.823 165,101C164.88,0.92 335.376,0.047 335,101C336.144,100.521 335.826,266 335.826,266'
+                style='fill:none;stroke:black;stroke-width:50.42px;'
+            />
+        </g>
+        <g transform='matrix(0.828087,0,0,1,42.5642,8)'>
+            <path
+                d='M457,252.56C457,227.415 432.347,207 401.982,207L99.018,207C68.653,207 44,227.415 44,252.56L44,429.44C44,454.585 68.653,475 99.018,475L401.982,475C432.347,475 457,454.585 457,429.44L457,252.56Z'
+                style='fill:black;'
+            />
+        </g>
+    </g>
+</svg>

@@ -1,109 +1,42 @@
 import { Component, createEffect, createMemo, createSignal, For, Show } from 'solid-js'
-
-import { ResultScreenData, WordToScreenData } from './Types.module'
+import { Routes, Route, useParams } from 'solid-app-router'
 
 import styles from './App.module.css'
 
-import { TextInput } from './components/TextInput'
-import { ResultScreen } from './components/ResultScreen'
-import { Settings } from './components/Settings'
+import { GuessScreen } from './components/GuessScreen'
 
-const getWindowDimensions = () => {
-    const { innerWidth: width, innerHeight: height } = window
-    return {
-        width,
-        height,
-    }
+import { initializeApp } from 'firebase/app'
+import { getAnalytics } from 'firebase/analytics'
+import { getFirestore, collection, getDocs } from 'firebase/firestore/lite'
+import { Home } from './components/Home'
+
+const firebaseConfig = {
+    apiKey: 'AIzaSyDQxNfB3LrtPIdzJCPgLTW7Cnr277NfaDI',
+    authDomain: 'guess-codeword.firebaseapp.com',
+    projectId: 'guess-codeword',
+    storageBucket: 'guess-codeword.appspot.com',
+    messagingSenderId: '778285136708',
+    appId: '1:778285136708:web:e63666e15669de71487511',
+    measurementId: 'G-N7RS19YX2E',
 }
 
+const firebaseApp = initializeApp(firebaseConfig)
+const analytics = getAnalytics(firebaseApp)
+const db = getFirestore(firebaseApp)
+const words = collection(db, 'words')
+
 const App: Component = () => {
-    const [value, setValue] = createSignal('')
-    const settings: WordToScreenData = JSON.parse(
-        localStorage.getItem('words') || '{"words":[], "foutHex": "#ff0000", "foutText": "Fout", "screenTime": 3000}'
-    )
-    const [words, setWords] = createSignal<WordToScreenData>(settings)
-    const [screens, setScreens] = createSignal<ResultScreenData[]>()
-    const [showSettings, setShowSettings] = createSignal(false)
-
-    const [windowDimensions, setWindowDimensions] = createSignal(getWindowDimensions())
-
-    window.addEventListener('resize', () => setWindowDimensions(getWindowDimensions()))
-
-    createEffect(() => {
-        console.log(windowDimensions())
-    })
-
-    const valueRef = createMemo(() => value())
-
-    createEffect(() => {
-        localStorage.setItem('words', JSON.stringify(words()))
-    })
-
     return (
-        <div
-            style={`--screen-height: ${windowDimensions().height}; --screen-width: ${windowDimensions().width};`}
-            class={styles.app}
-        >
-            <TextInput
-                value={valueRef()}
-                onInputChange={(e) => {
-                    setValue(e.currentTarget.value || '')
+        <Routes>
+            <Route path='/' element={<Home />}></Route>
+            <Route
+                path='/local/:id'
+                element={() => {
+                    const params = useParams()
+                    return <GuessScreen type={'local'} code={params.id} />
                 }}
-                onSubmit={(val) => {
-                    let result = false
-
-                    if (val == '') {
-                        return
-                    }
-
-                    setValue('')
-
-                    if (val == '!SETTINGS!') {
-                        setShowSettings(true)
-                        return
-                    }
-
-                    for (const i in words().words) {
-                        const word = words().words[i]
-                        if (word.caseSensitive) {
-                            if (val == word.word) {
-                                setScreens([{ text: word.displayText, hex: word.hex }])
-                                result = true
-                            }
-                        } else {
-                            if (val.toLowerCase() == word.word.toLowerCase()) {
-                                setScreens([{ text: word.displayText, hex: word.hex }])
-                                result = true
-                            }
-                        }
-                    }
-
-                    if (!result) {
-                        setScreens([{ text: words().foutText, hex: words().foutHex }])
-                    }
-                }}
-            />
-            <For each={screens()}>
-                {(screen) => (
-                    <ResultScreen
-                        data={screen}
-                        customDelay={words().screenTime || 3000}
-                        onTimerDone={() => {
-                            setScreens([])
-                        }}
-                    />
-                )}
-            </For>
-            <Show when={showSettings()}>
-                <Settings
-                    data={words()}
-                    onChange={(words) => {
-                        setWords(words)
-                    }}
-                    onClose={() => setShowSettings(false)}
-                ></Settings>
-            </Show>
-        </div>
+            ></Route>
+        </Routes>
     )
 }
 

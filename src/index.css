@@ -15,6 +15,26 @@ code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
+::-webkit-scrollbar {
+    width: var(--pixelUnit2);
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: none;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: var(--colorDark);
+    border-radius: 2px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: var(--colorMain);
+}
+
 :root {
     --colorMain: #18452c;
     --colorMainDark: hsl(147, 48%, 2%);
@@ -36,4 +56,51 @@ code {
     --colorWhite: #cdf4e0;
     --colorDanger: #792525;
     --colorDangerLight: hsl(0, 53%, 45%);
+
+    --unit: 1rem;
+    --unit2: calc(var(--unit) * 2);
+    --unit4: calc(var(--unit) * 4);
+    --unit8: calc(var(--unit) * 8);
+    --unit12: calc(var(--unit) * 12);
+    --unit24: calc(var(--unit) * 24);
+
+    --pixelUnit: 4px;
+    --pixelUnit2: calc(var(--pixelUnit) * 2);
+    --pixelUnit4: calc(var(--pixelUnit) * 4);
+    --pixelUnit8: calc(var(--pixelUnit) * 8);
+    --pixelUnit12: calc(var(--pixelUnit) * 12);
+    --pixelUnit24: calc(var(--pixelUnit) * 24);
+
+    /*Colors in HSL, op die manier kan je de lichtheid appart bepalen*/
+    --colorBGSaturation: 0%;
+    --colorBGLuminance: 2%;
+    --colorBG: hsl(0, var(--colorBGSaturation), var(--colorBGLuminance));
+
+    --colorDarkSaturation: 43%;
+    --colorDarkLuminance: 7%;
+    --colorDark: hsl(56, var(--colorDarkSaturation), var(--colorDarkLuminance));
+
+    --colorMainSaturation: 51%;
+    --colorMainLuminance: 35%;
+    --colorMain: hsl(71, var(--colorMainSaturation), var(--colorMainLuminance));
+
+    --colorPaperHue: 24;
+    --colorPaperSaturation: 62%;
+    --colorPaperLuminance: 40%;
+    --colorPaper: hsl(var(--colorPaperHue), var(--colorPaperSaturation), var(--colorPaperLuminance));
+
+    --colorDangerSaturation: 67%;
+    --colorDangerLuminance: 45%;
+    --colorDanger: hsl(0, var(--colorDangerSaturation), var(--colorDangerLuminance));
+
+    --colorCautionSaturation: 78%;
+    --colorCautionLuminance: 48%;
+    --colorCaution: hsl(49, var(--colorCautionSaturation), var(--colorCautionLuminance));
+
+    --colorSuccesSaturation: 56%;
+    --colorSuccesLuminance: 36%;
+    --colorSucces: hsl(133, var(--colorSuccesSaturation), var(--colorSuccesLuminance));
+
+    --colorWhite: hsl(24, var(--colorPaperSaturation), 90%);
+    --colorWhiteAccent: hsl(71, var(--colorMainSaturation), 85%);
 }

@@ -1,0 +1,16 @@
+svg {
+    position: absolute;
+}
+
+mask {
+    mask-type: alpha;
+    mask-origin: fill-box;
+}
+
+.lockText text {
+    fill: var(--colorWhiteAccent);
+    opacity: 0.6;
+    font-size: 20px;
+    font-weight: 900;
+    background-color: red;
+}
