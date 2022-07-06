@@ -43,7 +43,6 @@ const App: Component = () => {
         <div
             style={`--screen-height: ${windowDimensions().height}; --screen-width: ${windowDimensions().width};`}
             class={styles.app}
-            id='APP'
         >
             <TextInput
                 value={valueRef()}
@@ -59,20 +58,8 @@ const App: Component = () => {
 
                     setValue('')
 
-                    if (val == '!SETTINGS') {
+                    if (val == '!SETTINGS!') {
                         setShowSettings(true)
-                        return
-                    }
-
-                    if (val == '!FS') {
-                        const component = document.getElementById('APP')
-                        if (document.fullscreenElement) {
-                            document.exitFullscreen()
-                            return
-                        }
-                        if (component?.requestFullscreen) {
-                            component.requestFullscreen()
-                        }
                         return
                     }
 
