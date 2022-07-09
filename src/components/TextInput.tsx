@@ -35,7 +35,7 @@ export const TextInput: Component<{
                     setWord('')
                 }}
             >
-                Probeer
+                Gerard
             </button>
         </div>
     )
