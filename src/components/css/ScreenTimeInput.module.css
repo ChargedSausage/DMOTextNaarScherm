@@ -1,0 +1,65 @@
+.screenTimeInput {
+    width: calc(100%);
+    height: 3rem;
+    margin-bottom: 1.25rem;
+    margin-top: 0.25rem;
+    display: flex;
+    align-items: center;
+}
+
+.screenTimeInput.animated {
+    animation: timeDrop 0.25s ease-out;
+    animation-delay: 0.35s;
+    animation-fill-mode: backwards;
+}
+
+@keyframes timeDrop {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.screenTimeInput input {
+    height: calc(100% - 4px);
+    width: calc(100% - 4.5rem - 4px);
+    padding: 0px;
+    margin: 0px;
+    outline: 0px;
+    font-size: 1.5rem;
+    text-align: right;
+    background-color: var(--colorBG);
+    border: 0.5rem solid var(--colorMain);
+    border-top: 2px solid var(--colorMain);
+    border-right: 2px solid var(--colorMain);
+    border-left: 0px;
+    padding: 0px 2.25ch 0px 1ch;
+    border-radius: 0px 0.5rem 0.5rem 0px;
+    position: relative;
+}
+
+.screenTimeInput input[type='number']::-webkit-inner-spin-button,
+.screenTimeInput input[type='number']::-webkit-outer-spin-button {
+    display: none;
+}
+
+.screenTimeInput span {
+    position: absolute;
+    right: 2.5ch;
+    color: var(--colorGray);
+}
+
+.screenTimeInput svg {
+    height: 2.5rem;
+    width: 2.5rem;
+    background-color: var(--colorMain);
+    border-radius: 100%;
+    padding: 0px;
+    transform: scale(1.7);
+    stroke: var(--colorMainDark);
+    fill: var(--colorWhite);
+    margin-left: 0.5rem;
+    z-index: 1;
+}

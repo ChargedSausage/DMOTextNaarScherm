@@ -69,7 +69,7 @@ const TextInput: Component<{
                     setWord('')
                 }}
             >
-                Probeer voor gerard
+                Probeer
             </button>
         </div>
     )

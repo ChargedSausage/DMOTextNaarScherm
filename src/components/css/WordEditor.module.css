@@ -1,0 +1,141 @@
+.wordEditor {
+    width: 100%;
+    margin-bottom: 1rem;
+    box-shadow: var(--dropShadow);
+}
+.wordEditor.animated {
+    animation: slideInLeft 0.25s ease-out;
+    animation-delay: calc(0.4s + (0.1s * var(--data-delay-multiply)));
+    animation-fill-mode: backwards;
+}
+
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+        user-select: none;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+        user-select: initial;
+    }
+}
+
+.wordEditor .wordHeader {
+    width: 100%;
+    height: 3rem;
+    display: flex;
+    border-radius: 0.5rem 0.5rem 0 0;
+    justify-content: space-between;
+    background-color: var(--colorMain);
+}
+
+.wordEditor .wordHeader input {
+    background-color: var(--colorBG);
+    width: 15ch;
+    border: 0px;
+    margin: 0.5rem;
+    border-radius: 5px;
+    padding-left: 1ch;
+}
+
+.wordEditor .wordHeader span {
+    width: 15ch;
+    font-size: 1rem;
+    border: 0px;
+    margin: auto 0.25rem;
+    border-radius: 5px;
+    padding-left: 1ch;
+    font-weight: 700;
+    text-transform: capitalize;
+}
+
+.wordEditor .wordHeader .buttons {
+    display: flex;
+}
+
+.wordEditor .wordHeader button {
+    height: calc(100% - 1rem);
+    padding: 0px;
+    width: 2rem;
+    border: 0px;
+    margin: 0.5rem 0.5rem 0.5rem 0;
+    border-radius: 5px;
+}
+
+.wordEditor .wordHeader button.cap {
+    background-color: var(--colorBG);
+    fill: var(--colorWhite);
+}
+
+.wordEditor .wordHeader button.delete {
+    background-color: var(--colorDanger);
+    box-shadow: var(--dropShadow);
+}
+
+.wordEditor .wordHeader button svg {
+    width: 1.65rem;
+    height: 1.65rem;
+}
+
+.wordEditor .wordHeader button.delete svg {
+    stroke: var(--colorWhite);
+}
+
+.wordEditor .wordInfo {
+    width: calc(100% - 4px - 1rem);
+    height: 2rem;
+    background-color: none;
+    border: 2px solid var(--colorMain);
+    border-radius: 0 0 0.5rem 0.5rem;
+    display: flex;
+    padding: 0.5rem;
+}
+
+.wordEditor .wordInfo input,
+.wordInfo button {
+    height: 2rem;
+    border: 0px;
+    margin: 0px;
+    padding: 0px;
+    border-radius: 5px;
+    background-color: var(--colorBGLight);
+    margin-right: 5px;
+}
+
+.wordEditor .wordInfo input {
+    padding-left: 1ch;
+}
+
+.wordEditor .wordInfo button {
+    width: 2rem;
+}
+
+.wordEditor .wordInfo button svg {
+    fill: var(--colorWhite);
+}
+
+.wordEditor .wordInfo input[type='color'] {
+    width: 2rem;
+    position: relative;
+    padding-left: initial;
+    padding: 2px;
+}
+
+.wordEditor .wordInfo input[type='color']::after {
+    content: 'T';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.wordEditor .wordInfo input[type='number'] {
+    width: 5rem;
+    position: relative;
+}
